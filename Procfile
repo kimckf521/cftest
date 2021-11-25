@@ -1,1 +1,1 @@
-web: gunicorn cftest.wsgi
+web: gunicorn cftest.wsgi --log-file -
