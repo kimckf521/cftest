@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-545dlsspenk#&hua81#d$)j#b5=#^9glbke9w_(=m+^fc5rip-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['104.248.15.221']
+ALLOWED_HOSTS = ['127.0.0.1', '104.248.15.221']
 
 
 # Application definition
@@ -76,12 +76,24 @@ WSGI_APPLICATION = 'cftest.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'appDB',
+            'USER': 'app_admin',
+            'PASSWORD': 'kim521',
+            'HOST': 'localhost',
+            'PORT': '',
+        }
+    }
 
 
 # Password validation
